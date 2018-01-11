@@ -20,7 +20,7 @@ let Comment;
 
 module.exports.initialize = function () {
     return new Promise(function (resolve, reject) {
-        let db = mongoose.createConnection("mongodb://1234:1234@ds049878.mlab.com:49878/web322_a6");
+        let db = mongoose.createConnection("mongodb://1234:1234@ds151207.mlab.com:51207/web322_project");
 
         db.on('error', (err)=>{
             reject(err);

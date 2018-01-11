@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('dajtm4lpie87u8', 'qsmmsktczgicxl', 'e511874c984f636e4f4ab40cd0cececef1def659abe3860627ca634c09df75a0', {
-    host: 'ec2-184-73-247-240.compute-1.amazonaws.com',
+var sequelize = new Sequelize('deleh7tn71o0es', 'altgtfsnjyupen', '2707f91c50f08c8361604f7768d75b062985e37ee9c284de199d8efda298791c', {
+    host: 'ec2-107-21-95-70.compute-1.amazonaws.com',
     dialect: 'postgres',
     port: 5432,
     dialectOptions: {
@@ -54,7 +54,9 @@ module.exports.initialize = function() {
 
 module.exports.getAllEmployees = function() {
     return new Promise(function(resolve,reject) {
-        Employee.findAll()
+        Employee.findAll({
+            order: ["employeeNum"]
+        })
         .then(function(data) {
             resolve(data);
         })
@@ -69,7 +71,8 @@ module.exports.getEmployeesByStatus = function(status) {
         Employee.findAll({
             where: {
                 status: status
-            }
+            },
+            order: ["employeeNum"]
         })
         .then(function(data) {
             resolve(data);
@@ -85,7 +88,8 @@ module.exports.getEmployeesByDepartment = function(department) {
         Employee.findAll({
             where: {
                 department: department
-            }
+            },
+            order: ["employeeNum"]
         })
         .then(function(data) {
             resolve(data);
@@ -101,7 +105,8 @@ module.exports.getEmployeesByManager = function(manager) {
         Employee.findAll({
             where: {
                 employeeManagerNum: manager
-            }
+            },
+            order: ["employeeNum"]
         })
         .then(function(data) {
             resolve(data);
@@ -117,7 +122,8 @@ module.exports.getEmployeeByNum = function(num) {
         Employee.findAll({
             where: {
                 employeeNum: num
-            }
+            },
+            order: ["employeeNum"]
         })
         .then(function(data) {
             resolve(data[0]);
@@ -133,7 +139,8 @@ module.exports.getManagers = function() {
         Employee.findAll({
             where: {
                 isManager: true
-            }
+            },
+            order: ["employeeNum"]
         })
         .then(function(data) {
             resolve(data);
@@ -146,7 +153,9 @@ module.exports.getManagers = function() {
 
 module.exports.getDepartments = function() {
     return new Promise(function(resolve,reject) {
-        Department.findAll()
+        Department.findAll({
+            order: ["departmentId"]
+        })
         .then(function(data) {
             resolve(data);
         })
@@ -245,7 +254,8 @@ module.exports.getDepartmentById = function(id) {
         Department.findAll({
             where: {
                 departmentId: id
-            }
+            },
+            order: ["departmentId"]
         })
         .then(function(data) {
             resolve(data[0]);
