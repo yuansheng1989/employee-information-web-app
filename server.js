@@ -6,7 +6,7 @@
 *
 * Name: __Yuansheng Lu__ Student ID: _136654167_ Date: __2017-12-25___
 *
-* Online (Heroku) Link: ________________________________________________________
+* Online (Heroku) Link: https://still-beach-55514.herokuapp.com/
 *
 ********************************************************************************/
 
@@ -47,10 +47,12 @@ app.engine(".hbs", exphbs({
 }));
 app.set("view engine", ".hbs");
 
+app.use(bodyParser.json()); // for AJAX (JSON body parser)
+
 app.use(clientSessions({
   cookieName: "session",
   secret: "project_web322",
-  duration: 2 * 60 * 1000,
+  duration: 20 * 60 * 1000, // 20 minutes duration
   activeDuration: 1000 * 60
 }));
 // custom middleware function
@@ -315,6 +317,23 @@ app.post("/register", function(req, res) {
 app.get("/logout", function(req, res) {
   req.session.reset();
   res.redirect('/');
+});
+
+// setup route /api/updatePassword for post method
+app.post("/api/updatePassword", function(req, res) {
+  dataServiceAuth.checkUser({user: req.body.user, password: req.body.currentPassword})
+  .then(function() {
+    dataServiceAuth.updatePassword(req.body)
+    .then(function() {
+      res.json({successMessage: "Password changed successfully for user: " + req.body.user});
+    })
+    .catch(function(err) {
+      res.json({errorMessage: err});
+    });
+  })
+  .catch(function(err) {
+    res.json({errorMessage: err});
+  });
 });
 
 // setup no matching route
