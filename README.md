@@ -6,6 +6,7 @@ For the client side, the Bootstrap and jQuery are also used.
 In order to increase the user experience, AJAX is implemented using jQuery.
 And the states, like cookies and sessions, are managed using client-sessions.js.
 All the passwords are encrypted before they are stored in the database.
+
 To finish this project, I divided it into 8 assignments:
 
 Setup the environment, tooling, and a Heroku account (Visual Studio Code + Git + Heroku).
