@@ -1,10 +1,16 @@
 # employee-information-web-app
 This is a dynamic web application. It is built using Node.js and an MVC Framework - Express.js
+
 All the data is stored in database - PostgreSQL and MongoDB.
+
 A template engine - handlebars.js is also applied in the web app.
+
 For the client side, the Bootstrap and jQuery are also used.
+
 In order to increase the user experience, AJAX is implemented using jQuery.
+
 And the states, like cookies and sessions, are managed using client-sessions.js.
+
 All the passwords are encrypted before they are stored in the database.
 
 To finish this project, I divided it into 8 assignments:
